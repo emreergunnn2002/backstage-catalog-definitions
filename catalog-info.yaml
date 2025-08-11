@@ -83,7 +83,7 @@ kind: Resource
 metadata:
   name: global-db
   title: Global Database
-  description: IP: 10.15.42.91 - PostgreSQL v17
+  description: "IP: 10.15.42.91 - PostgreSQL v17"
 spec:
   type: database
   owner: dba-team
@@ -95,7 +95,7 @@ kind: Resource
 metadata:
   name: paid-db
   title: Paid Database
-  description: IP: 10.15.42.92 - PostgreSQL v17
+  description: "IP: 10.15.42.92 - PostgreSQL v17"
 spec:
   type: database
   owner: dba-team
@@ -107,7 +107,7 @@ kind: Resource
 metadata:
   name: e-defter-db
   title: E-Defter DB
-  description: IP: 10.15.42.86 - GLZEDNOVAPSQL01
+  description: "IP: 10.15.42.86 - GLZEDNOVAPSQL01"
 spec:
   type: database
   owner: dba-team
