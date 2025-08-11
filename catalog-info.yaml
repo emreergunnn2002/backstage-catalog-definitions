@@ -1,0 +1,210 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: nova-development-environment
+  description: Nova Geliştirme Ortamı
+  tags:
+    - development
+    - nova
+spec:
+  owner: group:default/nova-team
+  lifecycle: development
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: load-balancer
+  description: Geliştirme Ortamı için Yük Dengeleyici
+  tags:
+    - network
+    - load-balancer
+  annotations:
+    backstage.io/source-location: url:https://www.zirvenova.net
+spec:
+  type: service
+  lifecycle: development
+  owner: group:default/networking-team
+  system: nova-development-environment
+  links:
+    - url: https://www-dev.zirvenova.net
+      title: Erişim Linki
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-web-80
+  description: Nova Web Uygulaması - 10.15.40.80
+  tags:
+    - frontend
+    - web
+spec:
+  type: service
+  lifecycle: development
+  owner: group:default/nova-frontend-team
+  system: nova-development-environment
+  providesApis:
+    - nova-web-api
+  consumesApis:
+    - nova-login-api
+  dependsOn:
+    - resource:nova-global-database
+    - resource:nova-paid-database
+  links:
+    - url: https://www-dev.zirvenova.net
+      title: Nova Web
+    - url: https://login-dev.zirvenova.net
+      title: Nova Login
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-web-81
+  description: Nova Web Uygulaması - 10.15.40.81
+  tags:
+    - frontend
+    - web
+spec:
+  type: service
+  lifecycle: development
+  owner: group:default/nova-frontend-team
+  system: nova-development-environment
+  providesApis:
+    - nova-web-api
+  consumesApis:
+    - nova-login-api
+  dependsOn:
+    - resource:nova-global-database
+    - resource:nova-paid-database
+  links:
+    - url: https://www-dev.zirvenova.net
+      title: Nova Web
+    - url: https://login-dev.zirvenova.net
+      title: Nova Login
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-50
+  description: Nova Server ve Servisleri - 10.15.41.50
+  tags:
+    - backend
+    - server
+spec:
+  type: service
+  lifecycle: development
+  owner: group:default/nova-backend-team
+  system: nova-development-environment
+  providesApis:
+    - nova-server-api
+    - nova-bordro-service-api
+  consumesApis:
+    - redis-api
+  dependsOn:
+    - resource:nova-global-database
+    - resource:nova-paid-database
+    - resource:nova-e-defter-database
+    - resource:redis
+  links:
+    - url: https://server-dev.zirvenova.net
+      title: Nova Server
+    - url: http://localhost:5052
+      title: Nova BordroService
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-51
+  description: Nova Server ve Servisleri - 10.15.41.51
+  tags:
+    - backend
+    - server
+spec:
+  type: service
+  lifecycle: development
+  owner: group:default/nova-backend-team
+  system: nova-development-environment
+  providesApis:
+    - nova-server-api
+    - nova-bordro-service-api
+  consumesApis:
+    - redis-api
+  dependsOn:
+    - resource:nova-global-database
+    - resource:nova-paid-database
+    - resource:nova-e-defter-database
+    - resource:redis
+  links:
+    - url: https://server-dev.zirvenova.net
+      title: Nova Server
+    - url: http://localhost:5052
+      title: Nova BordroService
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: nova-global-database
+  description: Global PostgreSQL v17 Veritabanı - 10.15.42.91
+  tags:
+    - database
+    - postgresql
+spec:
+  type: database
+  lifecycle: development
+  owner: group:default/database-team
+  system: nova-development-environment
+  dependsOn: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: nova-paid-database
+  description: Paid PostgreSQL v17 Veritabanı - 10.15.42.92
+  tags:
+    - database
+    - postgresql
+spec:
+  type: database
+  lifecycle: development
+  owner: group:default/database-team
+  system: nova-development-environment
+  dependsOn: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: nova-e-defter-database
+  description: E-Defter Veritabanı - 10.15.42.86
+  tags:
+    - database
+    - postgresql
+    - e-defter
+spec:
+  type: database
+  lifecycle: development
+  owner: group:default/database-team
+  system: nova-development-environment
+  dependsOn: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: redis
+  description: Redis Cache - 10.15.41.38:6379
+  tags:
+    - cache
+    - redis
+spec:
+  type: cache
+  lifecycle: development
+  owner: group:default/nova-backend-team
+  system: nova-development-environment
+  dependsOn: []
