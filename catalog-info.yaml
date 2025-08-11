@@ -2,7 +2,8 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: development-ortami
-  description: Development ortamındaki servisler ve veritabanları
+  title: Development Ortamı
+  description: Development ortamındaki tüm sunucular, servisler ve veritabanları
 spec:
   owner: team-dev
 
@@ -11,7 +12,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: nova-web-1
-  description: Nova Web ve Nova Login (10.15.40.80)
+  title: Nova Web 1
+  description: |
+    IP: 10.15.40.80
+    Servisler:
+      - Nova.Web: https://www-dev.zirvenova.net
+      - Nova.Login: https://login-dev.zirvenova.net
 spec:
   type: service
   lifecycle: development
@@ -23,7 +29,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: nova-web-2
-  description: Nova Web ve Nova Login (10.15.40.81)
+  title: Nova Web 2
+  description: |
+    IP: 10.15.40.81
+    Servisler:
+      - Nova.Web: https://www-dev.zirvenova.net
+      - Nova.Login: https://login-dev.zirvenova.net
 spec:
   type: service
   lifecycle: development
@@ -35,7 +46,14 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: nova-server-1
-  description: Nova Server, Console ve Bordro Service (10.15.41.50)
+  title: Nova Server 1
+  description: |
+    IP: 10.15.41.50
+    Servisler:
+      - Nova.Server: https://server-dev.zirvenova.net
+      - Nova.BordroService: http://localhost:5052
+      - Nova.Console: cli app
+      - Redis: 10.15.41.38:6379
 spec:
   type: service
   lifecycle: development
@@ -47,7 +65,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: nova-server-2
-  description: Nova Server ve Bordro Service (10.15.41.51)
+  title: Nova Server 2
+  description: |
+    IP: 10.15.41.51
+    Servisler:
+      - Nova.Server: https://server-dev.zirvenova.net
+      - Nova.BordroService: http://localhost:5052
 spec:
   type: service
   lifecycle: development
@@ -59,7 +82,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: global-db
-  description: Global Database (PostgreSQL v17)
+  title: Global Database
+  description: IP: 10.15.42.91 - PostgreSQL v17
 spec:
   type: database
   owner: dba-team
@@ -70,7 +94,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: paid-db
-  description: Paid Database (PostgreSQL v17)
+  title: Paid Database
+  description: IP: 10.15.42.92 - PostgreSQL v17
 spec:
   type: database
   owner: dba-team
@@ -81,7 +106,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: e-defter-db
-  description: E-Defter Database
+  title: E-Defter DB
+  description: IP: 10.15.42.86 - GLZEDNOVAPSQL01
 spec:
   type: database
   owner: dba-team
