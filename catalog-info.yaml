@@ -1,117 +1,176 @@
 apiVersion: backstage.io/v1alpha1
-kind: System
+kind: Component
 metadata:
   name: development-ortami
   title: Development Ortamı
-  description: Development ortamındaki tüm sunucular, servisler ve veritabanları
+  description: Nova uygulamaları için geliştirme ortamı
 spec:
-  owner: team-dev
+  type: environment
+  lifecycle: development
+  owner: dev-team
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-web-1
-  title: Nova Web 1
-  description: |
-    IP: 10.15.40.80
-    Servisler:
-      - Nova.Web: https://www-dev.zirvenova.net
-      - Nova.Login: https://login-dev.zirvenova.net
+  name: server-10-15-40-80
+  title: 10.15.40.80
+  description: Web ve Login servislerini barındırır
 spec:
   type: service
   lifecycle: development
-  owner: team-dev
-  system: development-ortami
+  owner: dev-team
+  subcomponentOf: development-ortami
+  dependsOn:
+    - resource:global-database
+    - resource:paid-database
+    - resource:e-defter-db
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-web-2
-  title: Nova Web 2
-  description: |
-    IP: 10.15.40.81
-    Servisler:
-      - Nova.Web: https://www-dev.zirvenova.net
-      - Nova.Login: https://login-dev.zirvenova.net
+  name: server-10-15-40-81
+  title: 10.15.40.81
+  description: Web ve Login servislerini barındırır (ikinci node)
 spec:
   type: service
   lifecycle: development
-  owner: team-dev
-  system: development-ortami
+  owner: dev-team
+  subcomponentOf: development-ortami
+  dependsOn:
+    - resource:global-database
+    - resource:paid-database
+    - resource:e-defter-db
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-server-1
-  title: Nova Server 1
-  description: |
-    IP: 10.15.41.50
-    Servisler:
-      - Nova.Server: https://server-dev.zirvenova.net
-      - Nova.BordroService: http://localhost:5052
-      - Nova.Console: cli app
-      - Redis: 10.15.41.38:6379
+  name: server-10-15-41-50
+  title: 10.15.41.50
+  description: Nova Server, Console ve Bordro servisleri
 spec:
   type: service
   lifecycle: development
-  owner: team-dev
-  system: development-ortami
+  owner: dev-team
+  subcomponentOf: development-ortami
+  dependsOn:
+    - resource:global-database
+    - resource:paid-database
+    - resource:e-defter-db
+    - resource:redis-cache
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+    - title: Nova.Console
+      url: cli app
+    - title: Nova.BordroService
+      url: http://localhost:5052
+    - title: Redis
+      url: redis://10.15.41.38:6379
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-server-2
-  title: Nova Server 2
-  description: |
-    IP: 10.15.41.51
-    Servisler:
-      - Nova.Server: https://server-dev.zirvenova.net
-      - Nova.BordroService: http://localhost:5052
+  name: server-10-15-41-51
+  title: 10.15.41.51
+  description: Nova Server ve Bordro servisleri
 spec:
   type: service
   lifecycle: development
-  owner: team-dev
-  system: development-ortami
+  owner: dev-team
+  subcomponentOf: development-ortami
+  dependsOn:
+    - resource:global-database
+    - resource:paid-database
+    - resource:e-defter-db
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+    - title: Nova.BordroService
+      url: http://localhost:5052
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: global-db
+  name: global-database
   title: Global Database
-  description: |
-    IP: 10.15.42.91 - PostgreSQL v17
+  description: PostgreSQL v17 global veritabanı
 spec:
   type: database
-  owner: dba-team
+  owner: dev-team
   system: development-ortami
+  data:
+    host: 10.15.42.91
+    engine: postgresql
+    version: 17
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: paid-db
+  name: paid-database
   title: Paid Database
-  description: |
-    IP: 10.15.42.92 - PostgreSQL v17
+  description: PostgreSQL v17 ücretli veritabanı
 spec:
   type: database
-  owner: dba-team
+  owner: dev-team
   system: development-ortami
+  data:
+    host: 10.15.42.92
+    engine: postgresql
+    version: 17
 
 ---
+
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
   name: e-defter-db
   title: E-Defter DB
-  description: |
-    IP: 10.15.42.86 - GLZEDNOVAPSQL01
+  description: GLZEDNOVAPSQL01 e-defter veritabanı
 spec:
   type: database
-  owner: dba-team
+  owner: dev-team
   system: development-ortami
+  data:
+    host: 10.15.42.86
+    engine: postgresql
+    instance: GLZEDNOVAPSQL01
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: redis-cache
+  title: Redis Cache
+  description: Redis sunucusu (10.15.41.38)
+spec:
+  type: cache
+  owner: dev-team
+  system: development-ortami
+  data:
+    host: 10.15.41.38
+    port: 6379
+    engine: redis
+
