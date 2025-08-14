@@ -126,10 +126,13 @@ metadata:
   name: global-database
   title: Global Database
   description: PostgreSQL v17 global veritabanı
+  annotations:
+    db/host: 10.15.42.91
+    db/engine: postgresql
+    db/version: "17"
 spec:
   type: database
   owner: dev-team
-  system: development-ortami
   data:
     host: 10.15.42.91
     engine: postgresql
@@ -143,10 +146,13 @@ metadata:
   name: paid-database
   title: Paid Database
   description: PostgreSQL v17 ücretli veritabanı
+  annotations:
+    db/host: 10.15.42.92
+    db/engine: postgresql
+    db/version: "17"
 spec:
   type: database
   owner: dev-team
-  system: development-ortami
   data:
     host: 10.15.42.92
     engine: postgresql
@@ -159,11 +165,14 @@ kind: Resource
 metadata:
   name: e-defter-db
   title: E-Defter DB
-  description: GLZEDNOVAPSQL01 E-Defter veritabanı
+  description: E-Defter DB
+  annotations:
+    db/host: 10.15.42.86
+    db/engine: postgresql
+    db/instance: GLZEDNOVAPSQL01
 spec:
   type: database
   owner: dev-team
-  system: development-ortami
   data:
     host: 10.15.42.86
     engine: postgresql
@@ -177,10 +186,13 @@ metadata:
   name: redis-cache
   title: Redis Cache
   description: Redis sunucusu (10.15.41.38)
+  annotations:
+    cache/host: 10.15.41.38
+    cache/port: 6379
+    cache/engine: redis    
 spec:
   type: cache
   owner: dev-team
-  system: development-ortami
   data:
     host: 10.15.41.38
     port: 6379
