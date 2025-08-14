@@ -79,7 +79,7 @@ metadata:
     - title: Nova.Server
       url: https://server-dev.zirvenova.net
     - title: Nova.Console
-      url: cli app
+      url: cli://nova.console
     - title: Nova.BordroService
       url: http://localhost:5052
     - title: Redis
