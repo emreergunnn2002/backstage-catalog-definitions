@@ -1,22 +1,39 @@
 apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: development
+  title: Development
+  description: Development Ortamı'nı kapsayan sistem
+spec:
+  owner: dev-team
+
+---
+
+apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: development-ortami
   title: Development Ortamı
-  description: Nova uygulamaları için geliştirme ortamı
+  description: Development Ortamı
 spec:
   type: environment
   lifecycle: development
   owner: dev-team
+  system: development
 
 ---
 
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: server-10-15-40-80
+  name: 10.15.40.80
   title: 10.15.40.80
-  description: Web ve Login servislerini barındırır
+  description: Web ve Login servisleri
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
 spec:
   type: service
   lifecycle: development
@@ -26,20 +43,20 @@ spec:
     - resource:global-database
     - resource:paid-database
     - resource:e-defter-db
-  links:
-    - title: Nova.Web
-      url: https://www-dev.zirvenova.net
-    - title: Nova.Login
-      url: https://login-dev.zirvenova.net
 
 ---
 
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: server-10-15-40-81
+  name: 10.15.40.81
   title: 10.15.40.81
-  description: Web ve Login servislerini barındırır (ikinci node)
+  description: Web ve Login servisleri
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
 spec:
   type: service
   lifecycle: development
@@ -49,20 +66,24 @@ spec:
     - resource:global-database
     - resource:paid-database
     - resource:e-defter-db
-  links:
-    - title: Nova.Web
-      url: https://www-dev.zirvenova.net
-    - title: Nova.Login
-      url: https://login-dev.zirvenova.net
-
+  
 ---
 
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: server-10-15-41-50
+  name: 10.15.41.50
   title: 10.15.41.50
-  description: Nova Server, Console ve Bordro servisleri
+  description: Nova.Server, Nova.Console ve Nova.BordroService
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+    - title: Nova.Console
+      url: cli app
+    - title: Nova.BordroService
+      url: http://localhost:5052
+    - title: Redis
+      url: redis://10.15.41.38:6379
 spec:
   type: service
   lifecycle: development
@@ -73,24 +94,20 @@ spec:
     - resource:paid-database
     - resource:e-defter-db
     - resource:redis-cache
-  links:
-    - title: Nova.Server
-      url: https://server-dev.zirvenova.net
-    - title: Nova.Console
-      url: cli app
-    - title: Nova.BordroService
-      url: http://localhost:5052
-    - title: Redis
-      url: redis://10.15.41.38:6379
-
+  
 ---
 
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: server-10-15-41-51
+  name: 10.15.41.51
   title: 10.15.41.51
-  description: Nova Server ve Bordro servisleri
+  description: Nova.Server ve Nova.BordroService
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+    - title: Nova.BordroService
+      url: http://localhost:5052
 spec:
   type: service
   lifecycle: development
@@ -100,11 +117,6 @@ spec:
     - resource:global-database
     - resource:paid-database
     - resource:e-defter-db
-  links:
-    - title: Nova.Server
-      url: https://server-dev.zirvenova.net
-    - title: Nova.BordroService
-      url: http://localhost:5052
 
 ---
 
@@ -147,7 +159,7 @@ kind: Resource
 metadata:
   name: e-defter-db
   title: E-Defter DB
-  description: GLZEDNOVAPSQL01 e-defter veritabanı
+  description: GLZEDNOVAPSQL01 E-Defter veritabanı
 spec:
   type: database
   owner: dev-team
@@ -173,4 +185,3 @@ spec:
     host: 10.15.41.38
     port: 6379
     engine: redis
-
