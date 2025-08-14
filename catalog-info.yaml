@@ -127,9 +127,9 @@ metadata:
   title: Global Database
   description: PostgreSQL v17 Global Database
   tags:
-    - host:10.15.42.91
-    - engine:postgresql
-    - version:17
+    - 10.15.42.91
+    - postgresql
+    - version-17
 spec:
   type: database
   owner: dev-team
@@ -147,9 +147,9 @@ metadata:
   title: Paid Database
   description: PostgreSQL v17 Paid Database
   tags:
-    - host:10.15.42.92
-    - engine:postgresql
-    - version:17
+    - 10.15.42.92
+    - postgresql
+    - version-17
 spec:
   type: database
   owner: dev-team
@@ -167,9 +167,9 @@ metadata:
   title: E-Defter DB
   description: E-Defter DB
   tags:
-    - host:10.15.42.86
-    - engine:postgresql
-    - instance:GLZEDNOVAPSQL01
+    - 10.15.42.86
+    - postgresql
+    - GLZEDNOVAPSQL01
 spec:
   type: database
   owner: dev-team
@@ -187,9 +187,9 @@ metadata:
   title: Redis Cache
   description: Redis Cache
   tags:
-    - host:10.15.41.38
-    - port:6379
-    - engine:redis      
+    - 10.15.41.38
+    - port-6379
+    - redis      
 spec:
   type: cache
   owner: dev-team
