@@ -28,7 +28,7 @@ kind: Component
 metadata:
   name: 10.15.40.80
   title: 10.15.40.80
-  description: Web ve Login servisleri
+  description: Nova.Web ve Nova.Login
   links:
     - title: Nova.Web
       url: https://www-dev.zirvenova.net
@@ -51,7 +51,7 @@ kind: Component
 metadata:
   name: 10.15.40.81
   title: 10.15.40.81
-  description: Web ve Login servisleri
+  description: Nova.Web ve Nova.Login
   links:
     - title: Nova.Web
       url: https://www-dev.zirvenova.net
@@ -125,7 +125,7 @@ kind: Resource
 metadata:
   name: global-database
   title: Global Database
-  description: PostgreSQL v17 global veritabanı
+  description: PostgreSQL v17 Global Database
   annotations:
     db/host: 10.15.42.91
     db/engine: postgresql
@@ -145,7 +145,7 @@ kind: Resource
 metadata:
   name: paid-database
   title: Paid Database
-  description: PostgreSQL v17 ücretli veritabanı
+  description: PostgreSQL v17 Paid Database
   annotations:
     db/host: 10.15.42.92
     db/engine: postgresql
@@ -185,7 +185,7 @@ kind: Resource
 metadata:
   name: redis-cache
   title: Redis Cache
-  description: Redis sunucusu (10.15.41.38)
+  description: Redis Cache
   annotations:
     cache/host: 10.15.41.38
     cache/port: 6379
