@@ -125,9 +125,8 @@ kind: Resource
 metadata:
   name: global-database
   title: Global Database
-  description: PostgreSQL v17 Global Database
+  description: PostgreSQL v17 Global Database (10.15.42.91)
   tags:
-    - 10.15.42.91
     - postgresql
     - version-17
 spec:
@@ -145,9 +144,8 @@ kind: Resource
 metadata:
   name: paid-database
   title: Paid Database
-  description: PostgreSQL v17 Paid Database
+  description: PostgreSQL v17 Paid Database (10.15.42.92)
   tags:
-    - 10.15.42.92
     - postgresql
     - version-17
 spec:
@@ -165,9 +163,8 @@ kind: Resource
 metadata:
   name: e-defter-db
   title: E-Defter DB
-  description: E-Defter DB
+  description: E-Defter DB (10.15.42.86)
   tags:
-    - 10.15.42.86
     - postgresql
     - GLZEDNOVAPSQL01
 spec:
@@ -185,10 +182,8 @@ kind: Resource
 metadata:
   name: redis-cache
   title: Redis Cache
-  description: Redis Cache
+  description: Redis Cache (10.15.41.38:6379)
   tags:
-    - 10.15.41.38
-    - port-6379
     - redis      
 spec:
   type: cache
