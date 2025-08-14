@@ -166,7 +166,7 @@ metadata:
   description: E-Defter DB (10.15.42.86)
   tags:
     - postgresql
-    - GLZEDNOVAPSQL01
+    - glzednovapsql01
 spec:
   type: database
   owner: dev-team
