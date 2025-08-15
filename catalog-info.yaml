@@ -173,7 +173,7 @@ spec:
   owner: nova-team
   subcomponentOf: 10.15.41.50
   dependsOn:
-    - component:default/10.15.41.51
+    - component:10.15.41.51
 
 ---
 
