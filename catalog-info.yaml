@@ -1,6 +1,6 @@
 # Nova Domain
 apiVersion: backstage.io/v1alpha1
-kind: Domain
+kind: System
 metadata:
   name: nova-domain
   title: Nova Domain
