@@ -109,8 +109,7 @@ spec:
   type: server
   lifecycle: development
   owner: nova-team
-  subcomponentOf: 
-    - 10.15.41.50
+  subcomponentOf: 10.15.41.50
   dependsOn:
     - resource:global-database
     - resource:paid-database
@@ -133,8 +132,7 @@ spec:
   type: server
   lifecycle: development
   owner: nova-team
-  subcomponentOf: 
-    - 10.15.41.51
+  subcomponentOf: 10.15.41.51
   dependsOn:
     - resource:global-database
     - resource:paid-database
@@ -173,9 +171,9 @@ spec:
   type: service
   lifecycle: development
   owner: nova-team
-  subcomponentOf: 
-    - 10.15.41.50
-    - 10.15.41.51
+  subcomponentOf: 10.15.41.50
+  dependsOn:
+    - component:default/10.15.41.51
 
 ---
 
