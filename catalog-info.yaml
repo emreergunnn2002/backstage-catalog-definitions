@@ -1,14 +1,32 @@
+# Nova Domain
 apiVersion: backstage.io/v1alpha1
-kind: System
+kind: Domain
 metadata:
-  name: development
-  title: Development
-  description: Development Ortamı'nı kapsayan sistem
+  name: nova-domain
+  title: Nova Domain
+  description: Nova Domain
 spec:
-  owner: dev-team
+  type: domain
+  owner: nova-team
 
 ---
 
+# Production Ortamı
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: production-ortami
+  title: Production Ortamı
+  description: Production Ortamı
+spec:
+  type: environment
+  lifecycle: production
+  owner: nova-team
+  domain: nova-domain
+
+---
+
+# Development Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -18,11 +36,12 @@ metadata:
 spec:
   type: environment
   lifecycle: development
-  owner: dev-team
-  system: development
+  owner: nova-team
+  domain: nova-domain
 
 ---
 
+# 10.15.40.80 Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -37,15 +56,12 @@ metadata:
 spec:
   type: service
   lifecycle: development
-  owner: dev-team
+  owner: nova-team
   subcomponentOf: development-ortami
-  dependsOn:
-    - resource:global-database
-    - resource:paid-database
-    - resource:e-defter-db
 
 ---
 
+# 10.15.40.81 Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -60,66 +76,125 @@ metadata:
 spec:
   type: service
   lifecycle: development
-  owner: dev-team
+  owner: nova-team
   subcomponentOf: development-ortami
-  dependsOn:
-    - resource:global-database
-    - resource:paid-database
-    - resource:e-defter-db
   
 ---
 
+# 10.15.41.50 Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: 10.15.41.50
   title: 10.15.41.50
   description: Nova.Server, Nova.Console ve Nova.BordroService
-  links:
-    - title: Nova.Server
-      url: https://server-dev.zirvenova.net
-    - title: Nova.Console
-      url: cli://nova.console
-    - title: Nova.BordroService
-      url: http://localhost:5052
-    - title: Redis
-      url: redis://10.15.41.38:6379
 spec:
   type: service
   lifecycle: development
-  owner: dev-team
+  owner: nova-team
   subcomponentOf: development-ortami
+  
+---
+
+# Nova Server (10.15.41.50) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-50
+  title: Nova Server
+  description: Nova.Server
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+spec:
+  type: server
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: 
+    - 10.15.41.50
   dependsOn:
     - resource:global-database
     - resource:paid-database
     - resource:e-defter-db
     - resource:redis-cache
-  
+
 ---
 
+# Nova Server (10.15.41.51) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-51
+  title: Nova Server
+  description: Nova.Server
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+spec:
+  type: server
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: 
+    - 10.15.41.51
+  dependsOn:
+    - resource:global-database
+    - resource:paid-database
+    - resource:e-defter-db
+
+---
+
+# Nova Console Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-console
+  title: Nova Console
+  description: Nova.Console
+  tags: cli-app
+spec:
+  type: console
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: 10.15.41.50
+
+---
+
+# Nova Bordro Service Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-bordro-service
+  title: Nova Bordro Service
+  description: Nova.BordroService
+  links:
+    - title: Nova.BordroService
+      url: http://localhost:5052
+spec:
+  type: service
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: 
+    - 10.15.41.50
+    - 10.15.41.51
+
+---
+
+# 10.15.41.51 Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: 10.15.41.51
   title: 10.15.41.51
   description: Nova.Server ve Nova.BordroService
-  links:
-    - title: Nova.Server
-      url: https://server-dev.zirvenova.net
-    - title: Nova.BordroService
-      url: http://localhost:5052
 spec:
   type: service
   lifecycle: development
-  owner: dev-team
+  owner: nova-team
   subcomponentOf: development-ortami
-  dependsOn:
-    - resource:global-database
-    - resource:paid-database
-    - resource:e-defter-db
 
 ---
 
+# Global Database
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -131,7 +206,7 @@ metadata:
     - version-17
 spec:
   type: database
-  owner: dev-team
+  owner: nova-team
   data:
     host: 10.15.42.91
     engine: postgresql
@@ -139,6 +214,7 @@ spec:
 
 ---
 
+# Paid Database
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -150,7 +226,7 @@ metadata:
     - version-17
 spec:
   type: database
-  owner: dev-team
+  owner: nova-team
   data:
     host: 10.15.42.92
     engine: postgresql
@@ -158,6 +234,7 @@ spec:
 
 ---
 
+# E-Defter Database
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -169,7 +246,7 @@ metadata:
     - glzednovapsql01
 spec:
   type: database
-  owner: dev-team
+  owner: nova-team
   data:
     host: 10.15.42.86
     engine: postgresql
@@ -177,6 +254,7 @@ spec:
 
 ---
 
+# Redis Cache
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
@@ -187,7 +265,7 @@ metadata:
     - redis      
 spec:
   type: cache
-  owner: dev-team
+  owner: nova-team
   data:
     host: 10.15.41.38
     port: 6379
