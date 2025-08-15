@@ -1,3 +1,15 @@
+# Domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: nova-domain
+  title: Nova Domain
+  description: Nova Domain
+spec:
+  owner: nova-team
+
+---
+
 # Production Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
