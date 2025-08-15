@@ -1,15 +1,3 @@
-# Nova Domain
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: nova-domain
-  title: Nova Domain
-  description: Nova Domain
-spec:
-  owner: nova-team
-
----
-
 # Production Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -157,11 +145,11 @@ spec:
 
 ---
 
-# Nova Bordro Service Component
+# Nova Bordro Service (10.15.41.50) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-bordro-service
+  name: nova-bordro-service-50
   title: Nova Bordro Service
   description: Nova.BordroService
   links:
@@ -172,8 +160,24 @@ spec:
   lifecycle: development
   owner: nova-team
   subcomponentOf: 10.15.41.50
-  dependsOn:
-    - component:10.15.41.51
+
+---
+
+# Nova Bordro Service (10.15.41.51) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-bordro-service-51
+  title: Nova Bordro Service
+  description: Nova.BordroService
+  links:
+    - title: Nova.BordroService
+      url: http://localhost:5052
+spec:
+  type: service
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: 10.15.41.51
 
 ---
 
