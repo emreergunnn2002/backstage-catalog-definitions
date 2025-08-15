@@ -149,7 +149,8 @@ metadata:
   name: nova-console
   title: Nova Console
   description: Nova.Console
-  tags: cli-app
+  tags: 
+    - cli-app
 spec:
   type: console
   lifecycle: development
