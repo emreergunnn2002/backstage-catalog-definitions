@@ -6,7 +6,6 @@ metadata:
   title: Nova Domain
   description: Nova Domain
 spec:
-  type: domain
   owner: nova-team
 
 ---
