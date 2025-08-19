@@ -1,3 +1,30 @@
+# Nova API
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: nova-api
+  title: Nova API
+  description: API
+spec:
+  type: openapi
+  lifecycle: development
+  owner: nova-team
+
+---
+# Nova 2 API
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: nova-2-api
+  title: Nova 2 API
+  description: API
+spec:
+  type: grpc
+  lifecycle: development
+  owner: nova-team
+
+---
+
 # Development Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -9,6 +36,11 @@ spec:
   type: environment
   lifecycle: development
   owner: nova-team
+  domain: nova-domain
+  providesApis: # API'yı sağlar
+    - nova-api
+  consumesApis: # API'yı kullanır
+    - nova-2-api
 
 ---
 
