@@ -9,6 +9,13 @@ spec:
   type: openapi
   lifecycle: development
   owner: nova-team
+  definition:
+    $text: |
+      openapi: 3.0.0
+      info:
+        title: Nova API
+        version: 1.0.0
+      paths: {}
 
 ---
 # Nova 2 API
@@ -19,9 +26,16 @@ metadata:
   title: Nova 2 API
   description: API
 spec:
-  type: grpc
+  type: openapi
   lifecycle: development
   owner: nova-team
+  definition:
+    $text: |
+      openapi: 3.0.0
+      info:
+        title: Nova 2 API
+        version: 1.0.0
+      paths: {}
 
 ---
 
