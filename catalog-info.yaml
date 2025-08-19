@@ -9,8 +9,7 @@ spec:
   type: openapi
   lifecycle: development
   owner: nova-team
-  definition:
-    $text: |
+  definition: |
       openapi: 3.0.0
       info:
         title: Nova API
@@ -30,8 +29,7 @@ spec:
   type: openapi
   lifecycle: development
   owner: nova-team
-  definition:
-    $text: |
+  definition: |
       openapi: 3.0.0
       info:
         title: Nova 2 API
