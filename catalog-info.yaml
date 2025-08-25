@@ -28,11 +28,11 @@ spec:
 
 ---
 
-# Nova.Web (80) Component
+# Nova.Web (10.15.40.80) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-web-80
+  name: nova-web-10.15.40.80
   title: Nova Web
   description: Nova.Web
   links:
@@ -46,11 +46,11 @@ spec:
 
 ---
 
-# Nova.Login (80) Component
+# Nova.Login (10.15.40.80) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-login-80
+  name: nova-login-10.15.40.80
   title: Nova Login
   description: Nova.Login
   links:
@@ -79,11 +79,11 @@ spec:
   
 ---
 
-# Nova.Web (81) Component
+# Nova.Web (10.15.40.81) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-web-81
+  name: nova-web-10.15.40.81
   title: Nova Web
   description: Nova.Web
   links:
@@ -97,11 +97,11 @@ spec:
 
 ---
 
-# Nova.Login (81) Component
+# Nova.Login (10.15.40.81) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-login-81
+  name: nova-login-10.15.40.81
   title: Nova Login
   description: Nova.Login
   links:
@@ -134,7 +134,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-server-50
+  name: nova-server-10.15.41.50
   title: Nova Server
   description: Nova.Server
   links:
@@ -157,7 +157,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-server-51
+  name: nova-server-10.15.41.51
   title: Nova Server
   description: Nova.Server
   links:
@@ -192,11 +192,11 @@ spec:
 
 ---
 
-# Nova Bordro Service (50) Component
+# Nova Bordro Service (10.15.41.50) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-bordro-service-50
+  name: nova-bordro-service-10.15.41.50
   title: Nova Bordro Service
   description: Nova.BordroService
   links:
@@ -210,11 +210,11 @@ spec:
 
 ---
 
-# Nova Bordro Service (51) Component
+# Nova Bordro Service (10.15.41.51) Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nova-bordro-service-51
+  name: nova-bordro-service-10.15.41.51
   title: Nova Bordro Service
   description: Nova.BordroService
   links:
@@ -322,6 +322,8 @@ spec:
 
 ---
 
+# YENİ ORTAM
+
 # Production Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -331,6 +333,442 @@ metadata:
   description: Production Ortamı
 spec:
   type: environment
-  lifecycle: development
+  lifecycle: production
   owner: nova-team
   domain: nova-domain
+
+---
+
+# 172.18.40.80 Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 172.18.40.80
+  title: 172.18.40.80
+  description: Nova.Web ve Nova.Login
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: production-ortami
+
+---
+
+# Nova.Web (172.18.40.80) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-web-172.18.40.80
+  title: Nova Web
+  description: Nova.Web
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.40.80
+
+---
+
+# Nova.Login (172.18.40.80) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-login-172.18.40.80
+  title: Nova Login
+  description: Nova.Login
+  links:
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.40.80
+
+---
+
+# 172.18.40.81 Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 172.18.40.81
+  title: 172.18.40.81
+  description: Nova.Web ve Nova.Login
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: production-ortami
+
+---
+
+# Nova.Web (172.18.40.81) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-web-172.18.40.81
+  title: Nova Web
+  description: Nova.Web
+  links:
+    - title: Nova.Web
+      url: https://www-dev.zirvenova.net
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.40.81
+
+---
+
+# Nova.Login (172.18.40.81) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-login-172.18.40.81
+  title: Nova Login
+  description: Nova.Login
+  links:
+    - title: Nova.Login
+      url: https://login-dev.zirvenova.net
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.40.81
+
+---
+
+# 172.18.41.50 Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 172.18.41.50
+  title: 172.18.41.50
+  description: Nova.Server, Nova.Console ve Nova.BordroService
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: production-ortami
+
+---
+
+# Nova Server (172.18.41.50) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-172.18.41.50
+  title: Nova Server
+  description: Nova.Server
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+spec:
+  type: server
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.50
+  dependsOn:
+    - resource:global-database-172.18.42.80
+    - resource:paid-database-172.18.42.81
+    - resource:paid-database-172.18.42.82
+    - resource:paid-database-172.18.42.83
+    - resource:paid-database-172.18.42.84
+    - resource:paid-database-172.18.42.85
+    - resource:e-defter-db-172.18.42.86
+
+---
+
+# Nova Console (172.18.41.50) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-console-172.18.41.50
+  title: Nova Console
+  description: Nova.Console
+  tags: 
+    - cli-app
+spec:
+  type: console
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.50
+
+---
+
+# Nova Bordro Service (172.18.41.50) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-bordro-service-172.18.41.50
+  title: Nova Bordro Service
+  description: Nova.BordroService
+  links:
+    - title: Nova.BordroService
+      url: http://localhost:5052
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.50
+
+---
+
+# 172.18.41.51 Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 172.18.41.51
+  title: 172.18.41.51
+  description: Nova.Server ve Nova.BordroService
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: production-ortami
+
+---
+
+# Nova Server (172.18.41.51) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-172.18.41.51
+  title: Nova Server
+  description: Nova.Server
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+spec:
+  type: server
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.51
+  dependsOn:
+    - resource:global-database-172.18.42.80
+    - resource:paid-database-172.18.42.81
+    - resource:paid-database-172.18.42.82
+    - resource:paid-database-172.18.42.83
+    - resource:paid-database-172.18.42.84
+    - resource:paid-database-172.18.42.85
+    - resource:e-defter-db-172.18.42.86
+
+---
+
+# Nova Bordro Service (172.18.41.51) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-bordro-service-172.18.41.51
+  title: Nova Bordro Service
+  description: Nova.BordroService
+  links:
+    - title: Nova.BordroService
+      url: http://localhost:5052
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.51
+
+---
+
+# 172.18.41.52 Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 172.18.41.52
+  title: 172.18.41.52
+  description: Nova.Server ve Nova.BordroService
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: production-ortami
+
+---
+
+# Nova Server (172.18.41.52) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-server-172.18.41.52
+  title: Nova Server
+  description: Nova.Server
+  links:
+    - title: Nova.Server
+      url: https://server-dev.zirvenova.net
+spec:
+  type: server
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.52
+  dependsOn:
+    - resource:global-database-172.18.42.80
+    - resource:paid-database-172.18.42.81
+    - resource:paid-database-172.18.42.82
+    - resource:paid-database-172.18.42.83
+    - resource:paid-database-172.18.42.84
+    - resource:paid-database-172.18.42.85
+    - resource:e-defter-db-172.18.42.86
+
+---
+
+# Nova Bordro Service (172.18.41.52) Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nova-bordro-service-172.18.41.52
+  title: Nova Bordro Service
+  description: Nova.BordroService
+  links:
+    - title: Nova.BordroService
+      url: http://localhost:5052
+spec:
+  type: service
+  lifecycle: production
+  owner: nova-team
+  subcomponentOf: 172.18.41.52
+
+---
+
+# Global Database (172.18.42.80)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: global-database-172.18.42.80
+  title: Global Database
+  description: glznovagpsql01.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.80
+    engine: postgresql
+    version: 17
+
+---
+
+# Paid Database (172.18.42.81)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: paid-database-172.18.42.81
+  title: Paid Database
+  description: glznovagpsql01.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.81
+    engine: postgresql
+    version: 17
+
+---
+
+# Paid Database (172.18.42.82)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: paid-database-172.18.42.82
+  title: Paid Database
+  description: glznovagpsql02.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.82
+    engine: postgresql
+    version: 17
+
+---
+
+# Paid Database (172.18.42.83)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: paid-database-172.18.42.83
+  title: Paid Database
+  description: glznovagpsql03.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.83
+    engine: postgresql
+    version: 17
+
+---
+
+# Paid Database (172.18.42.84)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: paid-database-172.18.42.84
+  title: Paid Database
+  description: glznovagpsql04.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.84
+    engine: postgresql
+    version: 17
+
+---
+
+# Paid Database (172.18.42.85)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: paid-database-172.18.42.85
+  title: Paid Database
+  description: glznovagpsql05.atrosdc.com
+  tags:
+    - postgresql
+    - version-17
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 172.18.42.85
+    engine: postgresql
+    version: 17
+
+---
+
+# E-Defter Database (172.18.42.86)
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: e-defter-db-172.18.42.86
+  title: E-Defter DB
+  description: E-Defter DB (172.18.42.86)
+  tags:
+    - postgresql
+    - glzednovapsql01
+spec:
+  type: database
+  owner: nova-team
+  data:
+    host: 10.15.42.86
+    engine: postgresql
+    instance: GLZEDNOVAPSQL01
