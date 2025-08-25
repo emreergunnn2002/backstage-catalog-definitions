@@ -1,43 +1,3 @@
-# Nova API
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: nova-api
-  title: Nova API
-  description: API
-spec:
-  type: openapi
-  lifecycle: development
-  owner: nova-team
-  definition: |
-      openapi: 3.0.0
-      info:
-        title: Nova API
-        version: 1.0.0
-      paths: {}
-
----
-
-# Nova 2 API
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: nova-2-api
-  title: Nova 2 API
-  description: API
-spec:
-  type: openapi
-  lifecycle: development
-  owner: nova-team
-  definition: |
-      openapi: 3.0.0
-      info:
-        title: Nova 2 API
-        version: 1.0.0
-      paths: {}
-
----
-
 # Development Ortamı
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -50,10 +10,6 @@ spec:
   lifecycle: development
   owner: nova-team
   domain: nova-domain
-  providesApis: # API'yı sağlar
-    - nova-api
-  consumesApis: # API'yı kullanır
-    - nova-2-api
 
 ---
 
@@ -64,16 +20,55 @@ metadata:
   name: 10.15.40.80
   title: 10.15.40.80
   description: Nova.Web ve Nova.Login
+spec:
+  type: service
+  lifecycle: development
+  owner: nova-team
+  subcomponentOf: development-ortami
+
+---
+
+# Nova.Web Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Nova Web
+  title: Nova Web
+  description: Nova.Web
   links:
     - title: Nova.Web
       url: https://www-dev.zirvenova.net
+spec:
+  type: service
+  lifecycle: development
+  owner: nova-team
+relations:
+  - type: subcomponentOf
+    targetRef: 10.15.40.80
+  - type: subcomponentOf
+    targetRef: 10.15.40.81
+
+---
+
+# Nova.Login Component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Nova Login
+  title: Nova Login
+  description: Nova.Login
+  links:
     - title: Nova.Login
       url: https://login-dev.zirvenova.net
 spec:
   type: service
   lifecycle: development
   owner: nova-team
-  subcomponentOf: development-ortami
+relations:
+  - type: subcomponentOf
+    targetRef: 10.15.40.80
+  - type: subcomponentOf
+    targetRef: 10.15.40.81
 
 ---
 
@@ -174,7 +169,7 @@ spec:
 
 ---
 
-# Nova Bordro Service (10.15.41.50) Component
+# Nova Bordro Service Component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -188,25 +183,11 @@ spec:
   type: service
   lifecycle: development
   owner: nova-team
-  subcomponentOf: 10.15.41.50
-
----
-
-# Nova Bordro Service (10.15.41.51) Component
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: nova-bordro-service-51
-  title: Nova Bordro Service
-  description: Nova.BordroService
-  links:
-    - title: Nova.BordroService
-      url: http://localhost:5052
-spec:
-  type: service
-  lifecycle: development
-  owner: nova-team
-  subcomponentOf: 10.15.41.51
+relations:
+  - type: subcomponentOf
+    targetRef: 10.15.41.50
+  - type: subcomponentOf
+    targetRef: 10.15.41.51
 
 ---
 
@@ -301,3 +282,18 @@ spec:
     host: 10.15.41.38
     port: 6379
     engine: redis
+
+---
+
+# Production Ortamı
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: production-ortami
+  title: Production Ortamı
+  description: Production Ortamı
+spec:
+  type: environment
+  lifecycle: development
+  owner: nova-team
+  domain: nova-domain
